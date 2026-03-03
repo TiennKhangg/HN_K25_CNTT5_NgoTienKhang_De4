@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon</title>
+</head>
+
+<body>
+    <script>
+        let games = [
+            { id: "P001", name: "MineCraft", price: "24", category: "Khám phá", developer: "Microsoft", amount: "26" },
+            { id: "P002", name: "Roblox", price: "5", category: "Khám phá", developer: "Microsoft", amount: "46" },
+            { id: "P003", name: "GTA", price: "24", category: "Hành động", developer: "Twocent", amount: "17" },
+        ];
+        let choice;
+        do {
+            choice = prompt(
+                `
+                1. Menu game
+                2. Thêm game
+                3. Hiện thị danh sách game
+                4. Cập nhật thông tin game
+                5. Xóa game
+                6. Cập nhật hãng game
+                7. Tìm game
+                8. Sắp xếp theo giá
+                9. Bán game
+                `
+            )
+            switch (choice) {
+                case "1":
+                    case1();
+                    break;
+                case "2":
+                    case2();
+                    break;
+                case "3":
+                    case3();
+                    break;
+                case "4":
+                    break;
+                case "5":
+                    case5();
+                    break;
+                case "6":
+                    case6();
+                    break;
+                case "7":
+                    case7();
+                    break;
+            }
+        } while (choice !== "0")
+        // case 1:
+
+        function case1() {
+            let resuil = "Menu Game\n"
+            games.forEach(s =>
+                resuil += (`ID: ${s.id} | Name : ${s.name} | Price: ${s.price}$ | Category : ${s.category} | Developer: ${s.developer} | Amount: ${s.amount}\n`)
+
+            );
+            alert(resuil);
+        }
+        //case 2:
+        function case2() {
+            let newGame = {}
+            while (true) {
+                newGame.id = prompt("Nhập ID game mới:").trim();
+                if (games.includes(newGame.id)) {
+                    alert("ID không được trùng");
+                } else break;
+            }
+            while (true) {
+                newGame.name = prompt("Nhập tên game mới:").trim();
+                if (newGame.name === "") {
+                    alert("Tên không được để trống");
+                }
+                else
+                    break;
+            }
+            while (true) {
+                newGame.price = Number(prompt("Nhập giá game"));
+                if (newGame.price < 0) {
+                    alert("Giá tiền không hợp lệ!");
+                } else break;
+            }
+            while (true) {
+                newGame.category = prompt("Nhập thể loại game:").trim();
+                if (newGame.category === "") {
+                    alert("Không được để trống");
+                } else break;
+            }
+            while (true) {
+                newGame.developer = prompt("Nhập tên nhà phát hành").trim();
+                if (newGame.developer === "") {
+                    alert("Không được để trống");
+                } else break;
+            }
+            while (true) {
+                newGame.amount = Number(prompt("Nhập số lượng sản phẩm"));
+                if (newGame.amount < 0) {
+                    alert("Số lượng phải lớn hơn 0");
+                } else break;
+            }
+            games.push(newGame);
+            alert("Thêm thành công!");
+
+        }
+        //case 3:
+        function case3() {
+            let resuil = "Menu Game\n"
+            games.forEach(s =>
+                resuil += (`ID: ${s.id} | Name : ${s.name} | Price: ${s.price}$ | Category : ${s.category} | Developer: ${s.developer} | Amount: ${s.amount}\n`)
+
+            );
+            alert(resuil);
+        }
+        //case 4:
+        function case4() {
+            let findGameByID;
+            while (true) {
+                findGameByID = prompt("Nhập ID game muốn cập nhật");
+                let game = games.find(s => s.id === findGameByID);
+                if (!game) {
+                    alert("Tìm không thấy -> Nhập lại");
+                } else break;
+            }
+            game.price = prompt("Giá game")
+
+        }
+        // case 5:
+        function case5() {
+            let findGameByID;
+            while (true) {
+                findGameByID = prompt("Nhập ID game muốn xóa");
+                let game = games.find(s => s.id === findGameByID);
+                if (!game) {
+                    alert("Tìm không thấy -> Nhập lại");
+                } else break;
+            }
+            if (game = true) {
+                games.splice(game, 1);
+                alert("Xóa thành công");
+            }
+        }
+        // case 6:
+        function case6(){
+            let findDeveloper;
+            while(true){
+                findDeveloper = prompt("Nhập hãng game muốn cập nhật");
+                let game = games.find(s => s.developer === findDeveloper);
+                if(!game){
+                    alert("Tìm không thấy -> Nhập lại");
+                } else break;
+            }
+            if(game = true){
+                game.developer = prompt("Cập nhật hãng game");
+                
+            }
+        
+        }
+        //case 7:
+        function case7() {
+            let choice7;
+            do {
+                choice7 = prompt(`
+                Chọn phương thức tìm kiếm:
+                1. Tìm bẳng tên
+                2. Tìm bằng thể loại
+                0. Thoát
+                `);
+                
+            } while (choice7 !== "0");
+            if( choice7 === "1"){
+                case71();
+            } else if (choice7 === "2"){
+                case72();
+            } else if(choice === "0"){
+                alert("Thoát");
+                
+            }
+        }
+        function case71() {
+            let findGameByName;
+            while (true) {
+                findGameByName = prompt("Nhập tên game muốn tìm").trim();
+                let game = games.find(s => s.name === findGameByName);
+
+                if (!game) {
+                    alert("TÌm không thấy -> Nhập lại");
+                } else break;
+
+            }
+            if (game = true) {
+                resuil = (`Tên game: ${game.name}, Giá: ${game.price} thuộc thể loại: ${game.category} do ${game.developer} phát hành \n`)
+                alert(`
+                            Đã tìm thấy!\n
+                            ${resuil}\n                        
+                            `)
+            }
+        }
+        function case72() {
+            let findGameByCategory;
+            while (true) {
+                findGameByCategory = prompt("Nhập thể loại game muốn tìm").trim();
+                let game = game.find(s => s.category === findGameByCategory);
+                if (!game) {
+                    alert("Tìm không thấy -> Nhập lại");
+                } else break;
+            }
+            if (game = true) {
+                resuil = (`Tên game: ${game.name}, Giá: ${game.price} thuộc thể loại: ${game.category} do ${game.developer} phát hành \n`)
+                alert(`
+                            Đã tìm thấy!\n
+                            ${resuil}\n                        
+                            `)
+            }
+        }
+    </script>
+</body>
+
+</html>
